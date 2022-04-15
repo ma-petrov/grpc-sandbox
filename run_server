@@ -1,0 +1,11 @@
+#!/bin/zsh
+IMAGE=petrov/grpc_python_server:v1
+CONTAINER=grpc-python-server
+
+echo Building...
+
+python3 ./build.py
+
+docker stop $CONTAINER
+docker build -t $IMAGE /Users/petrov/Repositories/grpc-sandbox/docker
+docker run -it --name $CONTAINER -v /Users/petrov/Repositories/grpc-sandbox/app:/opt/grpc-server --rm -p 8070:8080 $IMAGE

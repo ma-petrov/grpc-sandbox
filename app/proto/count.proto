@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service Counter {
+    rpc Count(CountRequest) returns (stream CountReply) {}
+    rpc CountStream(stream CountStreamRequest) returns (stream CountReply) {}
+}
+
+message CountRequest {}
+
+message CountStreamRequest {
+    int32 action = 1;
+}
+
+message CountReply {
+    int32 counter = 1;
+}
